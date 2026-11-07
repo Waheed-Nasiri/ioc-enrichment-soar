@@ -65,7 +65,7 @@ et les domaines internes ne quittent **jamais** le périmètre.
 
 On lit clairement le comportement :
 - `[DRY]` IP publiques (`8.8.8.8`, `185.220.101.45`) → **seraient transmises** aux sources.
-- `[LOCAL]` IP privées (`192.168.1.10`, `10.20.30.40`) et domaine `.corp.local` → **non transmis**.
+- `[LOCAL]` IP privées (`192.168.X.X`, `10.X.X.X`) et domaine `.corp.local` → **non transmis**.
 - `[SKIP]` saisie invalide → ignorée proprement.
 
 > **Pourquoi c'est le point le plus important :** envoyer une IP interne à AbuseIPDB, c'est révéler
@@ -131,7 +131,7 @@ Le JSON retourné par l'API est bien parsé par Shuffle : `abuseipdb.score_abus 
 
 ![Un IOC interne reçu par Shuffle est marqué statut=local, non enrichi](07-shuffle-ioc-interne.png)
 
-Lorsqu'un IOC interne (`192.168.1.10`) traverse le workflow, il revient avec `statut: local` et
+Lorsqu'un IOC interne (`192.168.X.X`) traverse le workflow, il revient avec `statut: local` et
 `sources: {}` (vide) : **aucune donnée interne n'a été transmise**. Le principe de périmètre est
 respecté de bout en bout, pas seulement dans le script.
 
